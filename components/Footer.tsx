@@ -1,13 +1,14 @@
-import Image from "next/image"
-import { useRouter } from "next/navigation"
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
+import { logoutAccount } from "@/lib/actions/user.actions";
 
 const Footer = ({user, type="desktop"}: FooterProps) => {
 
     const router = useRouter();
 
     const handleLogOut = async() => {
-        const loggedOut = "";
+        const loggedOut = await logoutAccount();
 
         if(loggedOut) router.push('/sign-in');
     }
@@ -16,7 +17,7 @@ const Footer = ({user, type="desktop"}: FooterProps) => {
     <footer className="footer">
       <div className={type === 'mobile' ? 'footer_name-mobile' : 'footer_name'}>
         <p className="text-xl font-bold text-gray-700">
-          {user?.firstName[0]}
+          {user?.firstName}
         </p>
       </div>
 
